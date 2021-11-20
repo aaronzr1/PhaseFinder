@@ -90,6 +90,6 @@
 ## TODO:
 - add input details
 - progress bar
-- update `selected_parameters` more frequently (batch commands)
+- update `selected_parameters` more frequently (batch the commands)
 - add alternate method: run from command line and use sys.argv
 - more detailed installation guide
