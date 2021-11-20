@@ -68,6 +68,7 @@
     - each set of parameters will produce a separate graph
     - use Ctrl + W or Cmd + W to close current graph
     - next graph will automatically pop up once previous graph is closed
+- to visualize data already generated, run `visualize.py` and input the directory where the data is stored
 
 ## Folders and Files [not updated (yet)]:
 - [archived](https://github.com/aaronzr1/phase-shift/tree/master/archived): sample simulation files
@@ -89,5 +90,6 @@
 ## TODO:
 - add input details
 - progress bar
+- update `selected_parameters` more frequently (batch commands)
 - add alternate method: run from command line and use sys.argv
 - more detailed installation guide
