@@ -55,6 +55,7 @@
 - `make -f Makefile.osx s4_pyext` -->
 
 ## Usage
+- start by verifying that you are in the s4 environment (run `conda activate s4`)
 - run the program by typing `python main.py` (Windows) or `python3 main.py` (MacOS)
 - input requested information
 - if any information is incorrect, terminate the program and start over (Ctrl + C or ^C)
@@ -86,6 +87,7 @@
 - np.linspace was used instead of something like np.arange to prevent some float precision errors
 
 ## TODO:
+- add input details
 - progress bar
 - add alternate method: run from command line and use sys.argv
 - more detailed installation guide
