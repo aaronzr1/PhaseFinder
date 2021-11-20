@@ -13,7 +13,7 @@
     - `conda config --add channels conda-forge`
     - `conda config --set ssl_verify no`
     - `conda upgrade conda`
-    - `conda create -n s4 python=3.7`
+    - if you already have python installed, run `conda create -n s4 python`. otherwise, run `conda create -n s4 python=3.7`
     - `conda activate s4`
     - `conda install -c paulgoulain s4`
 - Test the installation by running:
@@ -23,7 +23,7 @@
     - Ctrl + Z to exit
 - Install necessary python packages by running `pip install numpy matplotlib scipy`
 
-### S4 MacOS (Note: the python version of S4 doesn't work on M1 Macs yet):
+### S4 MacOS* (Note: the python version of S4 doesn't work on M1 Macs yet):
 - Install Miniconda or Anaconda [here](https://docs.conda.io/projects/conda/en/4.6.1/user-guide/install/macos.html)
 - Open up Terminal and run the following:
     - `conda config --add channels conda-forge`
