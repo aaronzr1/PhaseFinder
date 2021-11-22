@@ -3,6 +3,8 @@ import sys, csv, math, os, time
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.signal import find_peaks
+from tqdm import tqdm
+from pathlib import Path
 
 PATH = ""
 
@@ -47,7 +49,7 @@ paramListR = []
 paramListT = []
 
 # create S4 simulation object and initializes everything
-def init(mat, eps, a, num = 32):
+def init(mat, eps, a, num = 50):
     S = S4.New(Lattice = ((a, 0), (0, a)), NumBasis = num)
 
     S.AddMaterial(Name = str(mat), Epsilon = eps)
@@ -58,7 +60,7 @@ def init(mat, eps, a, num = 32):
     S.AddLayer(Name = 'AirBuff', Thickness = tBuff, Material = 'Vacuum')
     S.AddLayer(Name = 'AirPath', Thickness = tPath, Material = 'Vacuum')
     S.AddLayer(Name = str(mat), Thickness = initial, Material = str(mat))
-    S.SetRegionCircle(Layer = str(mat), Material = str(mat), Center = (0, 0), Radius = initial) # initialize
+    # S.SetRegionCircle(Layer = str(mat), Material = str(mat), Center = (0, 0), Radius = 0) # initialize
     S.AddLayer(Name = 'SOGBelow', Thickness = 0.00, Material = 'SiO2')
 
     S.SetExcitationPlanewave(IncidenceAngles = (0, 0), sAmplitude = 1 + 0j, pAmplitude = 0 + 0j, Order = 0)
@@ -69,7 +71,7 @@ def init(mat, eps, a, num = 32):
 def config(S, mat, r, t):
 
     S.SetLayerThickness(Layer = str(mat), Thickness = t)
-    S.SetRegionCircle(Layer = str(mat), Material = 'Vacuum', Center = (0, 0), Radius = r)    
+    S.SetRegionCircle(Layer = str(mat), Material = 'Vacuum', Center = (0, 0), Radius = r)
 
     return
 
@@ -288,11 +290,10 @@ def phase(t, ra, a, state, RDATA):
 
     # compile data
     vals = np.zeros(wvlTotal); compile(filename1, vals)
-    reference = np.zeros(wvlTotal, dtype=np.complex_); complex_compile(os.path.join(DATA, 'reference.txt'), reference)
-    incident = np.zeros(wvlTotal, dtype=np.complex_); complex_compile(os.path.join(DATA, 'incident.txt'), incident)
-    z0 = np.zeros(wvlTotal, dtype=np.complex_); complex_compile(os.path.join(DATA, filename2), z0)
+    reference = np.zeros(wvlTotal, dtype=np.complex_); complex_compile(os.path.join(RDATA, 'reference.txt'), reference)
+    incident = np.zeros(wvlTotal, dtype=np.complex_); complex_compile(os.path.join(RDATA, 'incident.txt'), incident)
+    z0 = np.zeros(wvlTotal, dtype=np.complex_); complex_compile(os.path.join(RDATA, filename2), z0)
     reflected = z0 - incident
-    # phase = 
 
     ratioR = (reference/reflected).real
     ratioI = (reference/reflected).imag
@@ -305,6 +306,7 @@ def phase(t, ra, a, state, RDATA):
 def main():
 
     # store time taken info
+    Path('logs').mkdir(parents = True, exist_ok = True)
     time_logs = open('logs/time_logs.txt', 'w+')
     start_time = time.perf_counter()
 
@@ -322,8 +324,8 @@ def main():
     wvlVal = int(input("Input target wavelength in nm: "))
     print(f"\nTarget wavelength is {wvlVal} nm\n")
 
-    R = int(input("Run Reflection simulation? (1 for Yes, 0 for No)"))
-    T = int(input("Run Transmission simulation? (1 for Yes, 0 for No)"))
+    R = int(input("Run Reflection simulation? (1 for Yes, 0 for No): "))
+    T = int(input("Run Transmission simulation? (1 for Yes, 0 for No): "))
 
     mat = str(input("Input material name: ")) # TODO: change to a list for multilayer
     print(f"\nMaterial name is '{mat}'\n\n")
@@ -340,8 +342,8 @@ def main():
     # print(f"n value is {n}")
 
     print("Input thickness range in microns (use default recommended values if no preference):")
-    tL = int(input("Lower bound (ex. 0.1 microns): "))
-    tH = int(input("Upper bound (ex. 0.5 microns): "))
+    tL = float(input("Lower bound (ex. 0.1): "))
+    tH = float(input("Upper bound (ex. 0.5): "))
     tTotal = int((tH - tL) * 1000 + 1)
     print(f"\nLower bound is {tL} microns and upper bound is {tH} microns, for a total of {tTotal} iterations\n\n")
     time.sleep(3)
