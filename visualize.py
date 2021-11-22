@@ -199,13 +199,14 @@ def main():
 
         fig, ax3 = plt.subplots()
         ax3.plot(np.linspace(wvlL, wvlH, wvlTotal), rVals)
-        ax3.set_title(f"original: t = {int(round(t, 3) * 1000)}, ra = {round(ra, 3)}, a = {int(round(a, 3) * 1000)}")
+        ax3.set_title(f"t = {int(round(t, 3) * 1000)}, ra = {round(ra, 3)}, a = {int(round(a, 3) * 1000)}")
         ax3.set_xlabel("Wavelength (nm)")
-        ax3.set_ylabel("Transmittance")
+        if STATE: ax3.set_ylabel("Reflectance")
+        else: ax3.set_ylabel("Transmittance")
         ax3.set_ylim([0, 2])
         ax = ax3.twinx()
         ax.plot(np.linspace(wvlL, wvlH, wvlTotal), ph, 'y:')
-        ax.set_ylabel("Phase Shift")
+        ax.set_ylabel("Phase Shift (π)")
         ax.set_ylim([0, 2])
 
         plt.tight_layout()
