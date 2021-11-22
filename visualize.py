@@ -195,7 +195,7 @@ def main():
                 rVals[i] = float(data[i][0])
         fderiv = np.diff(rVals); fderiv /= wvlS
         sderiv = np.diff(fderiv); sderiv /= wvlS
-        ph = phase(t, ra, a, STATE, DATA)
+        ph = phase(t, ra, a, STATE, RDATA)
 
         fig, ax3 = plt.subplots()
         ax3.plot(np.linspace(wvlL, wvlH, wvlTotal), rVals)
