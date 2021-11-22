@@ -3,8 +3,8 @@ import sys, csv, math, os, time
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.signal import find_peaks
-from tqdm import tqdm
 from pathlib import Path
+from tqdm import tqdm # for future progress bar update
 
 PATH = ""
 
@@ -67,7 +67,7 @@ def init(mat, eps, a, num = 50):
 
     return S
 
-# set radius and thickness for a simulation object
+# set radius and thickness for a simulation object (never run, but kept here for reference)
 def config(S, mat, r, t):
 
     S.SetLayerThickness(Layer = str(mat), Thickness = t)

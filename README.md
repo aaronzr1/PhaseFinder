@@ -2,14 +2,21 @@
 
 ## Installation and Setup:
 
+### Initial Setup:
+- run the following commands:
+    - `git clone https://github.com/aaronzr1/PhaseFinder`
+    - `cd PhaseFinder`
+- follow steps below for installing S4
+
 ### S4 for Windows:
 - Install Miniconda or Anaconda [here](https://docs.conda.io/projects/conda/en/4.6.1/user-guide/install/windows.html)
-- Open the Anaconda Prompt and run `where conda` to find the path to conda (ex. `C:\Users\USERNAME\Miniconda3\Scripts\conda.exe`)
+<!-- - Open the Anaconda Prompt and run `where conda` to find the path to conda (ex. `C:\Users\USERNAME\Miniconda3\Scripts\conda.exe`)
 - Add to PATH
     - Edit environmental variables
-    - Put as first in the list to prevent potential conflicts
-- Open up Command Prompt and run the following:
-    - `conda init cmd.exe`
+    - Put as first in the list to prevent potential conflicts -->
+<!-- - Open up Command Prompt and run the following: -->
+- Open up Anaconda Prompt and run the following:
+    <!-- - `conda init cmd.exe` -->
     - `conda config --add channels conda-forge`
     - `conda config --set ssl_verify no`
     - `conda upgrade conda`
@@ -55,7 +62,7 @@
 - `make -f Makefile.osx s4_pyext` -->
 
 ## Usage
-- start by verifying that you are in the s4 environment (run `conda activate s4`)
+- start by verifying that you are in the s4 environment and inside the PhaseFinder directory (run `conda activate s4` and `cd` into PhaseFinder directory)
 - run the program by typing `python main.py` (Windows) or `python3 main.py` (MacOS)
 - input requested information
 - if any information is incorrect, terminate the program and start over (Ctrl + C or ^C)
