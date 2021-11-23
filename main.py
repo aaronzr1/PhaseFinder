@@ -1,5 +1,5 @@
 # flag for generating simulation data
-SIM = 1
+SIM = 0
 
 if SIM: import S4 as S4
 import sys, csv, math, os, time
@@ -22,7 +22,7 @@ tPath = 50.00
 initial = 1.00
 
 # default wvl values (wavelength in nm)
-wvlVal = 1550
+wvlVal = 1550 # arbitrary
 wvlL, wvlH, wvlS = wvlVal - 2, wvlVal + 2, 1/100
 wvlTotal = int((wvlH - wvlL) / wvlS + 1)
 
@@ -253,6 +253,7 @@ def raCalc(t, ra, a, state, paramList, RDATA):
     compile(filename1, raVals)
     fderiv = np.diff(raVals); fderiv /= wvlS # first derivative
     sderiv = np.diff(fderiv); sderiv /= wvlS # second derivative
+    # print(raVals)
 
     # find peak points (gives indices of those points)
     fderivPeaks, _ = find_peaks(fderiv, prominence = 0.1)
@@ -341,6 +342,7 @@ def main():
     print(f"\nTarget wavelength is {wvlVal} nm\n")
 
     wvlS = float(input("Input wavelength step size in nm (ex. 0.01): "))
+    wvlTotal = int((wvlH - wvlL) / wvlS + 1)
 
     R = int(input("Run Reflection simulation? (1 for Yes, 0 for No): "))
     T = int(input("Run Transmission simulation? (1 for Yes, 0 for No): "))
@@ -364,10 +366,6 @@ def main():
     NumBasis = int(input("Input NumBasis value (ex. 32; computation time is roughly proportional to NumBasis^2): "))
 
     time.sleep(3)
-
-    # update wvl values
-    wvlL, wvlH, wvlS = wvlVal - 2, wvlVal + 2, 1/100
-    wvlTotal = int((wvlH - wvlL) / wvlS + 1)
 
     # update a values
     aL, aH, aS = 0.5, round((wvlVal - 300) / 1000, 3), 0.001
