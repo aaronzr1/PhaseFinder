@@ -1,12 +1,12 @@
+# flag for generating simulation data
+SIM = 1
+
+if SIM: import S4 as S4
 import sys, csv, math, os, time
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.signal import find_peaks
 from pathlib import Path
-
-# flag for generating simulation data
-SIM = 1
-if SIM: import S4 as S4
 
 PATH = ""
 
