@@ -1,0 +1,1 @@
+selected [t, r/a ratio, a] values (separated by commas below):

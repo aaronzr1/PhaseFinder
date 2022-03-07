@@ -1,0 +1,3 @@
+C:\Users\origa\Desktop\NPLAB\phase-shift\single_TRA\data\raw_data\Silicon3.466_t0814_ra0.380_a630_T.txt
+C:\Users\origa\Desktop\NPLAB\phase-shift\single_TRA\data\raw_data\Silicon3.466_t0610_ra0.380_a640_R.txt
+C:\Users\origa\Desktop\NPLAB\phase-shift\single_TRA\data\raw_data\Silicon3.466_t0678_ra0.390_a630_T.txt
